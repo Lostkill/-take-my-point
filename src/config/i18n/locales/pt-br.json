@@ -1,0 +1,8 @@
+{
+  "access": "acesso",
+  "working": "trabalhando",
+  "point-types": {
+    "entry": "ENTRADA",
+    "exit": "SAÍDA"
+  }
+}
