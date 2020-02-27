@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import enterpriseSettings from '../config/enterprises'
 
-import moment from 'moment-timezone'
 import { logout } from '../@takeMyPoint/ducks/login-duck'
-import { setLastPoint } from '../@takeMyPoint/ducks/user-duck'
+import { setPointThunk } from '../@takeMyPoint/thunks/user-thunk'
 import { menuOptions } from '../config/menu-options'
 
 import HeaderBar from '../components/Header'
@@ -16,18 +15,18 @@ function Home (props) {
   const [wayTakePoint, setWayTakePoint] = useState('manual')
   const [activePoint, setActivePoint] = useState(props.lastPoint.type)
 
-  const { setPoint } = props
-  useEffect(() => {
-    function dispatchSetPoint () {
-      const payload = {
-        type: activePoint,
-        date: moment().format()
-      }
-      setPoint(payload)
+  function dispatchSetPoint (type) {
+    setActivePoint(type)
+    const { setPointThunk, user } = props
+    const userId = user._id
+    const enterpriseId = user.enterprise_id
+    const payload = {
+      type,
+      user_id: userId,
+      enterprise_id: enterpriseId
     }
-
-    dispatchSetPoint()
-  }, [setPoint, activePoint])
+    setPointThunk(payload)
+  }
 
   return (
     <div>
@@ -43,7 +42,7 @@ function Home (props) {
         wayTakePoint={wayTakePoint}
         setWayTakePoint={setWayTakePoint}
         activePoint={activePoint}
-        setActivePoint={setActivePoint}
+        setActivePoint={dispatchSetPoint}
       />
     </div>
   )
@@ -62,7 +61,7 @@ const mapStateToProps = ({ LoginDuck, UserDuck }) => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout()),
-    setPoint: (payload) => dispatch(setLastPoint(payload))
+    setPointThunk: (payload) => dispatch(setPointThunk.create(payload))
   }
 }
 

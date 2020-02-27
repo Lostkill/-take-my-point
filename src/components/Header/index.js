@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
+import i18n from '../../config/i18n'
+
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import LogoCompany from '../logo-img'
@@ -16,10 +18,9 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 function HeaderBar (props) {
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <AppBar
         position='fixed'
-        elevation0
       >
         <div>
           <HeaderToolbar enterprise={props.enterprise}>
@@ -36,7 +37,7 @@ function HeaderBar (props) {
               </HeaderTypography>
             </div>
 
-            <Tooltip title='Sair' placement='bottom'>
+            <Tooltip title={`${i18n.translate('logout')}`} placement='bottom'>
               <IconButton onClick={() => props.setLogout()}>
                 <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={faSignOutAlt} />
               </IconButton>
@@ -45,7 +46,7 @@ function HeaderBar (props) {
           <Menu enterprise={props.enterprise} className='d-flex'>
             <div>
               {props.menu.map((item) => (
-                <Tooltip title={item.text} placement='bottom' key={item.name}>
+                <Tooltip title={`${i18n.translate(`menu.${item.name}`)}`} placement='bottom' key={item.name}>
                   <Link to={item.link}>
                     <IconButton>
                       <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={item.icon} />

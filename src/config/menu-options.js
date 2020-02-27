@@ -2,20 +2,17 @@ import { faHome, faBook, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 export const menuOptions = [
   {
-    text: 'Dashboard',
-    name: 'dashboard',
+    name: 'home',
     link: '/app/point',
     icon: faHome
   },
   {
-    text: 'Historico',
-    name: 'historico',
+    name: 'history',
     link: '/app/history',
     icon: faBook
   },
   {
-    text: 'Perfil',
-    name: 'perfil',
+    name: 'profile',
     link: '/app/profile',
     icon: faUserAlt
   }

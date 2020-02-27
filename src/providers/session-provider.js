@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import api from '../@takeMyPoint/resources/api'
 
 function SessionProvider (props) {
   const [token, setToken] = useState(props.token)
@@ -8,6 +9,7 @@ function SessionProvider (props) {
     if (!props.token) {
       setTokenIsValid(false)
     } else {
+      api.setHeaders({ Authorization: `Bearer ${props.token}` })
       setToken(props.token)
       setTokenIsValid(true)
     }

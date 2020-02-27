@@ -1,8 +1,27 @@
 {
-  "access": "access",
+  "logout": "Get Out",
+  "menu": {
+    "home": "Home",
+    "history": "History",
+    "profile": "Profile"
+  },
   "working": "working",
   "point-types": {
     "entry": "ENTRY",
     "exit": "EXIT"
+  },
+  "table": {
+    "title": "History of points",
+    "no_data": "No data to show!",
+    "sort": "Sort",
+    "columns": {
+      "date": "Date",
+      "last_point": "Last Point",
+      "status": {
+        "in_progress": "In Progress",
+        "done": "Done"
+      },
+      "open": "Open"
+    }
   }
 }

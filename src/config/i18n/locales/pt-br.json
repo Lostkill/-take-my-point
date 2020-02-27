@@ -1,8 +1,27 @@
 {
-  "access": "acesso",
+  "logout": "Sair",
+  "menu": {
+    "home": "Ínicio",
+    "history": "Historico",
+    "profile": "Perfil"
+  },
   "working": "trabalhando",
   "point-types": {
     "entry": "ENTRADA",
     "exit": "SAÍDA"
+  },
+  "table": {
+    "title": "Historico de pontos",
+    "no_data": "Sem dados a exibir!",
+    "sort": "Ordernar",
+    "columns": {
+      "date": "Data",
+      "last_point": "Último Ponto",
+      "status": {
+        "in_progress": "Em progresso",
+        "done": "Finalizado"
+      },
+      "open": "Abrir"
+    }
   }
 }
