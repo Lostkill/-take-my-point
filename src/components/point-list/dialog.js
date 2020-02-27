@@ -25,6 +25,13 @@ function PointDialog (props) {
     setOpen(true)
   }
 
+  function totalHour (point) {
+    if (point.length <= 0) return null
+    var a = moment(point[0].date)
+    var b = moment(point[point.length - 1].date)
+    return b.diff(a, 'hours')
+  }
+
   return (
     <div>
       <IconButton color='primary' onClick={() => setSelected()}>
@@ -52,7 +59,7 @@ function PointDialog (props) {
               </IconButton>
             }
             title='~ eae'
-            subheader='September'
+            subheader={`${totalHour(props.selected)}h`}
           />
           <CardContentWrapper>
             {
@@ -78,7 +85,7 @@ function PointDialog (props) {
                             <FontAwesomeIcon icon={faClock} />
                           </ListItemIcon>
                           <ListItemText>
-                            {moment(item.date).format()}
+                            {moment(item.date).format('DD/MM/YYYY - hh:mm:ss')}
                           </ListItemText>
                         </div>
                       </ListItem>
