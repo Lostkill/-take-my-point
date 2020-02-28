@@ -1,7 +1,7 @@
 import { create } from 'apisauce'
 
 const api = create({
-  baseURL: 'http://localhost:3001'
+  baseURL: 'https://take-my-point.herokuapp.com'
 })
 
 export default api

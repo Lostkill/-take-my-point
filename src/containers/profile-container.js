@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { loginThunk } from '../@takeMyPoint/thunks/user-thunk'
@@ -15,6 +15,14 @@ function ProfileContainer (props) {
     username: props.user.username,
     language: props.user.language
   })
+  const [activePoint, setActivePoint] = useState('EXIT')
+
+  const { points } = props
+  useEffect(() => {
+    points.map((item) => {
+      return setActivePoint(item.point[item.point.length - 1].type)
+    })
+  }, [points])
 
   const handleChange = name => event => {
     setState({
@@ -29,12 +37,11 @@ function ProfileContainer (props) {
     }
   }
 
-  const { lastPoint } = props
   return (
     <div>
       <HeaderBar
         menu={menu}
-        activePoint={lastPoint.type === 'ENTRY' && true}
+        activePoint={activePoint === 'ENTRY' && true}
       />
       <ProfileView
         edit={edit}
@@ -50,11 +57,11 @@ function ProfileContainer (props) {
 
 const mapStateToProps = ({ UserDuck, PointDuck }) => {
   const { user } = UserDuck
-  const { lastPoint } = PointDuck
+  const { points } = PointDuck
 
   return {
     user,
-    lastPoint
+    points
   }
 }
 

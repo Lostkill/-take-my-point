@@ -1,4 +1,4 @@
-import React, { useContext  } from 'react'
+import React, { useContext } from 'react'
 import { connect } from 'react-redux'
 import compose from 'compose'
 import styled, { ThemeContext } from 'styled-components'

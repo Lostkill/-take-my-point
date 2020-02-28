@@ -10,6 +10,7 @@ import HistoryView from '../screens/history-view'
 function HistoryContainer (props) {
   const [menu] = useState(menuOptions)
   const [dateSelected, setDateSelected] = useState([])
+  const [activePoint, setActivePoint] = useState('EXIT')
 
   const { user, getAllPoints } = props
   useEffect(() => {
@@ -19,12 +20,18 @@ function HistoryContainer (props) {
     requestAllPoints()
   }, [user, getAllPoints])
 
-  const { lastPoint } = props
+  const { points } = props
+  useEffect(() => {
+    points.map((item) => {
+      return setActivePoint(item.point[item.point.length - 1].type)
+    })
+  }, [points])
+
   return (
     <div>
       <HeaderBar
         menu={menu}
-        activePoint={lastPoint.type === 'EXIT' && true}
+        activePoint={activePoint === 'ENTRY' && true}
       />
       <HistoryView
         points={props.points}
@@ -38,11 +45,10 @@ function HistoryContainer (props) {
 
 const mapStateToProps = ({ UserDuck, PointDuck }) => {
   const { user } = UserDuck
-  const { lastPoint, points, isFetching } = PointDuck
+  const { points, isFetching } = PointDuck
 
   return {
     user,
-    lastPoint,
     points,
     isFetching
   }
