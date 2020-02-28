@@ -25,7 +25,7 @@ function PointList (props) {
               item._id,
               moment(item.point[item.point.length - 1].date).format('h:mm:ss'),
               item._id === moment().format('DD-MM-YYYY') ? 'inProgress' : 'Done',
-              <DialogPoint key={item._id} selected={props.selected} setDateSelected={() => props.setDateSelected(item.point)} />
+              <DialogPoint key={item._id} selected={props.selected} setDateSelected={() => props.setDateSelected(item.point)} user={props.user} />
             ] : []
           )) : []}
           columns={columns}

@@ -38,6 +38,7 @@ function HistoryContainer (props) {
         dateSelected={dateSelected}
         setDateSelected={(item) => setDateSelected(item)}
         isFetching={props.isFetching}
+        user={props.user}
       />
     </div>
   )

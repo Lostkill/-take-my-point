@@ -50,7 +50,7 @@ function PointDialog (props) {
           <CardHeader
             avatar={
               <Avatar aria-label='recipe'>
-                P
+                {props.user.username.charAt(0)}
               </Avatar>
             }
             action={
@@ -58,8 +58,7 @@ function PointDialog (props) {
                 <FontAwesomeIcon style={{ color: '#6db65b' }} className='fa-sm' icon={faWindowClose} />
               </IconButton>
             }
-            title='~ eae'
-            subheader={`${totalHour(props.selected)}h`}
+            title={`~ ${totalHour(props.selected)}h`}
           />
           <CardContentWrapper>
             {

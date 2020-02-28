@@ -21,6 +21,7 @@ function HistoryView (props) {
                 points={props.points}
                 selected={props.dateSelected}
                 setDateSelected={props.setDateSelected}
+                user={props.user}
               />
             )
         }
