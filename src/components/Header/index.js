@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext  } from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
+import compose from 'compose'
+import styled, { ThemeContext } from 'styled-components'
 import { Link } from 'react-router-dom'
 import { logout } from '../../@takeMyPoint/ducks/user-duck'
 import { clearPoints } from '../../@takeMyPoint/ducks/point-duck'
@@ -20,38 +21,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 function HeaderBar (props) {
-  function setLogout () {
-    props.clearPoints()
-    props.logout()
-  }
-
+  const theme = useContext(ThemeContext)
   return (
     <div style={{ height: '100%' }}>
       <AppBar
         position='fixed'
       >
         <div>
-          <HeaderToolbar enterprise={props.enterprise}>
+          <HeaderToolbar theme={theme}>
             <div className='d-flex justify-content-center align-items-center'>
               <HeaderIconWrapper>
                 <LogoCompany
-                  enterprise={props.enterprise}
                   width={40}
                 />
               </HeaderIconWrapper>
 
               <HeaderTypography variant='h6'>
-                {props.enterprise.name}
+                {theme.enterpriseName}
               </HeaderTypography>
             </div>
 
             <Tooltip title={`${i18n.translate('logout')}`} placement='bottom'>
-              <IconButton onClick={() => setLogout()}>
+              <IconButton onClick={() => props.logout()}>
                 <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={faSignOutAlt} />
               </IconButton>
             </Tooltip>
           </HeaderToolbar>
-          <Menu enterprise={props.enterprise} className='d-flex'>
+          <Menu className='d-flex' theme={theme}>
             <div>
               {props.menu.map((item) => (
                 <Tooltip title={`${i18n.translate(`menu.${item.name}`)}`} placement='bottom' key={item.name}>
@@ -78,10 +74,12 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(HeaderBar)
+export default compose(
+  connect(null, mapDispatchToProps)
+)(HeaderBar)
 
 const HeaderToolbar = styled(Toolbar)`
-  background-color: ${props => props.enterprise.light_color};
+  background-color: ${props => props.theme.light_color};
   justify-content: space-between;
 `
 const HeaderIconWrapper = styled.div`
@@ -99,5 +97,5 @@ const Menu = styled.div`
   width: 100%;
   padding: 0px 20px;
   justify-content: space-between;
-  background-color: ${props => props.enterprise.primary_color};
+  background-color: ${props => props.theme.primary_color};
 `

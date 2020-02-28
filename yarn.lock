@@ -3171,6 +3171,13 @@ compose-react@^1.0.6:
   resolved "https://registry.yarnpkg.com/compose-react/-/compose-react-1.0.6.tgz#98f05bb54d723c257e98041e9a51d114921b6980"
   integrity sha512-fwPuDtH03mad6y5Qn9ByC6mhmZlzUnn/eFsbF6tQvsHl7eaXlVoBJ5LpxfZqip2yBFyRRUKdfhqpPhD9xJ03LA==
 
+compose@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/compose/-/compose-0.1.2.tgz#d556f55d0a91399df4227945c1bd96030310fe7c"
+  integrity sha1-1Vb1XQqROZ30InlFwb2WAwMQ/nw=
+  dependencies:
+    patr "0.2.5"
+
 compressible@~2.0.16:
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.17.tgz#6e8c108a16ad58384a977f3a482ca20bff2f38c1"
@@ -8360,6 +8367,13 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+patr@0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/patr/-/patr-0.2.5.tgz#4231e87f0dac5b766b0475cd4ac94bd9c3563de7"
+  integrity sha1-QjHofw2sW3ZrBHXNSslL2cNWPec=
+  dependencies:
+    promised-io "0.2.3"
+
 pbkdf2@^3.0.3:
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.0.17.tgz#976c206530617b14ebb32114239f7b09336e93a6"
@@ -9240,6 +9254,11 @@ promise@^8.0.3:
   integrity sha512-HeRDUL1RJiLhyA0/grn+PTShlBAcLuh/1BJGtrvjwbvRDCTLLMEz9rOGCV+R3vHY4MixIuoMEd9Yq/XvsTPcjw==
   dependencies:
     asap "~2.0.6"
+
+promised-io@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/promised-io/-/promised-io-0.2.3.tgz#65b9219cc60c1dda64d3e60f86335368c2e56c96"
+  integrity sha1-ZbkhnMYMHdpk0+YPhjNTaMLlbJY=
 
 prompts@^2.0.1:
   version "2.3.0"

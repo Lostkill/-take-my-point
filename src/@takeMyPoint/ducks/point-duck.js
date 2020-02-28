@@ -32,7 +32,6 @@ export default function reducer (state = initialState, action) {
       }
     case Types.CLEAR_POINTS:
       return {
-        ...state,
         isFetching: false,
         points: [],
         lastPoint: {}

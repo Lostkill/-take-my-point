@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { loginThunk } from '../@takeMyPoint/thunks/user-thunk'
 import { fetchError } from '../@takeMyPoint/ducks/user-duck'
-import enterpriseSettings from '../config/enterprises'
 
 import LoginView from '../screens/login-view'
 
 function LoginContainer (props) {
-  const [company] = useState('solides')
   const [state, setState] = useState({
     email: '',
     password: ''
@@ -34,7 +32,6 @@ function LoginContainer (props) {
         error={props.error}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        enterprise={enterpriseSettings[company]}
       />
     </div>
   )

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import enterpriseSettings from '../config/enterprises'
 
 import { loginThunk } from '../@takeMyPoint/thunks/user-thunk'
 import { menuOptions } from '../config/menu-options'
@@ -9,7 +8,6 @@ import HeaderBar from '../components/Header'
 import ProfileView from '../screens/profile-view'
 
 function ProfileContainer (props) {
-  const company = 'solides'
   const [menu] = useState(menuOptions)
   const [edit, setEdit] = useState(false)
   const [state, setState] = useState({
@@ -36,7 +34,6 @@ function ProfileContainer (props) {
     <div>
       <HeaderBar
         menu={menu}
-        enterprise={enterpriseSettings[company]}
         activePoint={lastPoint.type === 'ENTRY' && true}
       />
       <ProfileView

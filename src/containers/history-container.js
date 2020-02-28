@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import enterpriseSettings from '../config/enterprises'
 
 import { setPointThunk } from '../@takeMyPoint/thunks/point-thunk'
 import { menuOptions } from '../config/menu-options'
@@ -9,7 +8,6 @@ import HeaderBar from '../components/Header'
 import HistoryView from '../screens/history-view'
 
 function HistoryContainer (props) {
-  const company = 'solides'
   const [menu] = useState(menuOptions)
   const [dateSelected, setDateSelected] = useState([])
 
@@ -26,7 +24,6 @@ function HistoryContainer (props) {
     <div>
       <HeaderBar
         menu={menu}
-        enterprise={enterpriseSettings[company]}
         activePoint={lastPoint.type === 'EXIT' && true}
       />
       <HistoryView

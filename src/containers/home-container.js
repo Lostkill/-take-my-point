@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import enterpriseSettings from '../config/enterprises'
 
 import { setPointThunk } from '../@takeMyPoint/thunks/point-thunk'
 import { menuOptions } from '../config/menu-options'
@@ -9,7 +8,6 @@ import HeaderBar from '../components/Header'
 import HomeView from '../screens/home-view'
 
 function Home (props) {
-  const company = 'solides'
   const [menu] = useState(menuOptions)
   const [wayTakePoint, setWayTakePoint] = useState('manual')
   const [activePoint, setActivePoint] = useState('EXIT')
@@ -17,7 +15,7 @@ function Home (props) {
   const { points } = props
   useEffect(() => {
     points.map((item) => {
-      setActivePoint(item.point[item.point.length - 1].type)
+      return setActivePoint(item.point[item.point.length - 1].type)
     })
   }, [points])
 
@@ -38,7 +36,6 @@ function Home (props) {
     <div>
       <HeaderBar
         menu={menu}
-        enterprise={enterpriseSettings[company]}
         activePoint={activePoint === 'ENTRY' && true}
       />
       <HomeView

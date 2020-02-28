@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 
 import LogoCompany from '../components/logo-img'
 import TextField from '../components/text-field'
@@ -10,13 +10,12 @@ import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
 
 const LoginView = props => (
   <div>
-    <BackgroundEffect enterprise={props.enterprise}>
+    <BackgroundEffect>
       <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: '100%' }}>
         <LogoCompany
-          enterprise={props.enterprise}
           width={240}
         />
-        <LoginTitle>{props.enterprise.name}</LoginTitle>
+        <LoginTitle>{props.theme.enterpriseName}</LoginTitle>
         <LoginFormWrapper>
           <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: '100%' }}>
             <div>
@@ -57,7 +56,7 @@ const LoginView = props => (
   </div>
 )
 
-export default LoginView
+export default withTheme(LoginView)
 
 const BackgroundEffect = styled.div`
   overflow: hidden;
@@ -67,7 +66,7 @@ const BackgroundEffect = styled.div`
   bottom: 0;
   top: 0;
   margin: auto;
-  background-color: ${props => props.enterprise.light_color};
+  background-color: ${props => props.theme.light_color};
   flex: 1;
 `
 const LoginTitle = styled.h1`
