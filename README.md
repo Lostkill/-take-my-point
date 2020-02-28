@@ -1,5 +1,9 @@
-### `Remember that you need to be running the backend`
+## `How to run TakeMyPoint Front-End ▶️`
+  ### Is too simple
+  - CLONE PROJECT WITH: git clone https://github.com/Lostkill/-take-my-point.git
 
-## Learn More
+  - Now Running yarn install in root of project
+  - And everything was set up now run yarn start and be happy :)
+
 ### Code Splitting
 

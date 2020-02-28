@@ -50,9 +50,10 @@ function PointList (props) {
 export default PointList
 
 const Wrapper = styled.div`
+  white-space: normal;
   width: 100%;
-  height: 100%;
 `
 const TableWrapper = styled.div`
+  height: calc(100vh - 250px);
   width: 100%;
 `

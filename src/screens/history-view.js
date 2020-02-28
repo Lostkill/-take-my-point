@@ -8,7 +8,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 function HistoryView (props) {
   return (
     <div>
-      <ContentWrapper className='d-flex flex-column justify-content-center align-items-center'>
+      <ContentWrapper className='container-fluid d-flex justify-content-center align-items-center'>
         {
           props.isFetching
             ? (
@@ -32,7 +32,7 @@ function HistoryView (props) {
 export default HistoryView
 
 const ContentWrapper = styled.div`
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   height: 100%;
   width: 100%;

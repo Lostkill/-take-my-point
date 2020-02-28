@@ -23,30 +23,31 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 function HeaderBar (props) {
   const theme = useContext(ThemeContext)
   return (
-    <div style={{ height: '100%' }}>
-      <AppBar
-        position='fixed'
-      >
-        <div>
-          <HeaderToolbar theme={theme}>
-            <div className='d-flex justify-content-center align-items-center'>
-              <HeaderIconWrapper>
-                <LogoCompany
-                  width={40}
-                />
-              </HeaderIconWrapper>
+    <AppBar
+      position='fixed'
+      style={{ padding: '0' }}
+    >
+      <HeaderToolbar theme={theme} className='d-flex flex-column'>
+        <FirstHeader>
+          <div className='d-flex justify-content-center align-items-center'>
+            <HeaderIconWrapper className='d-flex justify-content-center'>
+              <LogoCompany
+                width={40}
+              />
+            </HeaderIconWrapper>
 
-              <HeaderTypography variant='h6'>
-                {theme.enterpriseName}
-              </HeaderTypography>
-            </div>
+            <HeaderTypography variant='h6'>
+              {theme.enterpriseName}
+            </HeaderTypography>
+          </div>
 
-            <Tooltip title={`${i18n.translate('logout')}`} placement='bottom'>
-              <IconButton onClick={() => props.logout()}>
-                <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={faSignOutAlt} />
-              </IconButton>
-            </Tooltip>
-          </HeaderToolbar>
+          <Tooltip title={`${i18n.translate('logout')}`} placement='bottom'>
+            <IconButton onClick={() => props.logout()}>
+              <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={faSignOutAlt} />
+            </IconButton>
+          </Tooltip>
+        </FirstHeader>
+        <SecondHeader>
           <Menu className='d-flex' theme={theme}>
             <div>
               {props.menu.map((item) => (
@@ -61,9 +62,9 @@ function HeaderBar (props) {
             </div>
             <Status status={{ active: props.activePoint }} />
           </Menu>
-        </div>
-      </AppBar>
-    </div>
+        </SecondHeader>
+      </HeaderToolbar>
+    </AppBar>
   )
 }
 
@@ -80,7 +81,18 @@ export default compose(
 
 const HeaderToolbar = styled(Toolbar)`
   background-color: ${props => props.theme.light_color};
+  padding: 0;
+`
+const FirstHeader = styled.div`
+  width: 100%;
+  display: flex;
   justify-content: space-between;
+  padding: 10px;
+`
+const SecondHeader = styled.div`
+  width: 100%;
+  margin: 0;
+  padding: 0;
 `
 const HeaderIconWrapper = styled.div`
   height: 100%;
