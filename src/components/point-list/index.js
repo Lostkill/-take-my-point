@@ -20,14 +20,14 @@ function PointList (props) {
       <TableWrapper>
         <MUIDataTable
           title={`${i18n.translate('table.title')}`}
-          data={props.points ? props.points.map(item => (
+          data={props.points.length > 0 ? props.points.map(item => (
             item ? [
               item._id,
               moment(item.point[item.point.length - 1].date).format('h:mm:ss'),
               item._id === moment().format('DD-MM-YYYY') ? 'inProgress' : 'Done',
               <DialogPoint key={item._id} selected={props.selected} setDateSelected={() => props.setDateSelected(item.point)} />
             ] : []
-          )) : ''}
+          )) : []}
           columns={columns}
           options={{
             filterType: 'dropdown',

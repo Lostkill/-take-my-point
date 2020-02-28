@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import enterpriseSettings from '../config/enterprises'
 
-import { logout } from '../@takeMyPoint/ducks/login-duck'
-import { setPointThunk } from '../@takeMyPoint/thunks/user-thunk'
+import { setPointThunk } from '../@takeMyPoint/thunks/point-thunk'
 import { menuOptions } from '../config/menu-options'
 
 import HeaderBar from '../components/Header'
@@ -13,7 +12,14 @@ function Home (props) {
   const company = 'solides'
   const [menu] = useState(menuOptions)
   const [wayTakePoint, setWayTakePoint] = useState('manual')
-  const [activePoint, setActivePoint] = useState(props.lastPoint.type)
+  const [activePoint, setActivePoint] = useState('EXIT')
+
+  const { points } = props
+  useEffect(() => {
+    points.map((item) => {
+      setActivePoint(item.point[item.point.length - 1].type)
+    })
+  }, [points])
 
   function dispatchSetPoint (type) {
     setActivePoint(type)
@@ -34,7 +40,6 @@ function Home (props) {
         menu={menu}
         enterprise={enterpriseSettings[company]}
         activePoint={activePoint === 'ENTRY' && true}
-        setLogout={props.logout}
       />
       <HomeView
         menu={menu}
@@ -48,19 +53,19 @@ function Home (props) {
   )
 }
 
-const mapStateToProps = ({ LoginDuck, UserDuck }) => {
-  const { user } = LoginDuck
-  const { lastPoint } = UserDuck
+const mapStateToProps = ({ UserDuck, PointDuck }) => {
+  const { user } = UserDuck
+  const { lastPoint, points } = PointDuck
 
   return {
     user,
-    lastPoint
+    lastPoint,
+    points
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout()),
     setPointThunk: (payload) => dispatch(setPointThunk.create(payload))
   }
 }

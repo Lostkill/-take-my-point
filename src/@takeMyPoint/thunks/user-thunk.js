@@ -1,25 +1,40 @@
 import api from '../resources/api'
-import moment from 'moment-timezone'
-import { setPoint, getPoints, setIsFetching } from '../ducks/user-duck'
+import { login, fetchError, updateUser } from '../ducks/user-duck'
 
-const setPointThunk = {
-  getAll: (userId) => dispatch => {
-    dispatch(setIsFetching(true))
-    api.get(`/points?user_id=${userId}`)
-      .then(res => {
-        dispatch(getPoints(res.data.points))
-        dispatch(setIsFetching(false))
-      })
+const loginThunk = {
+  auth: (payload) => dispatch => {
+    api.post('/auth', {
+      email: payload.email,
+      password: payload.password
+    }).then(res => {
+      if (res.status === 200) {
+        dispatch(login(res.data.user, res.data.token))
+      } else {
+        dispatch(fetchError(res.data.error))
+      }
+    })
   },
   create: (payload) => dispatch => {
-    api.post('/new_point', {
-      type: payload.type,
-      date: moment().format(),
-      day: moment().format('DD-MM-YYYY'),
-      user_id: payload.user_id,
-      enterprise_id: payload.enterprise_id
-    }).then(res => dispatch(setPoint(res.data.point)))
+    api.post('/register', {
+      username: payload.username,
+      email: payload.email,
+      password: payload.password,
+      user_role: 'REGULAR',
+      language: payload.language,
+      enterprise_id: '5e506e9524c972365c942975'
+    }).then(res => {
+      if (res.status === 200) {
+        dispatch(login(res.data.user, res.data.token))
+      } else {
+        dispatch(fetchError(res.data.error))
+      }
+    })
+  },
+  update: (userId, payload) => dispatch => {
+    api.put('/update/' + userId, {
+      ...payload
+    }).then(res => dispatch(updateUser(payload)))
   }
 }
 
-export { setPointThunk }
+export { loginThunk }

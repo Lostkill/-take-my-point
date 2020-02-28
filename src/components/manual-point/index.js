@@ -11,7 +11,7 @@ import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 function ManualPoint (props) {
   return (
     <ContentWrapper className='d-flex flex-column justify-content-center align-items-center'>
-      <img src={`${props.profile_pic}`} alt='The User' />
+      <img src={`${props.profile_pic ? props.profile_pic : 'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png'}`} alt='The User' width={100} />
       <div className='d-flex justify-content-center align-items-center'>
         {
           props.pointType === 'EXIT'

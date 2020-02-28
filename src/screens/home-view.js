@@ -18,7 +18,7 @@ function HomeView (props) {
               ? (
                 <QrPoint
                   qr_value={`${props.user._id}.${props.user.username}.${props.user.enterprise_id}`}
-                  profile_pic={props.user.profile_pic}
+                  profile_pic={props.user.profile_pic ? props.user.profile_pic : 'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png'}
                 />
               ) : (
                 <ManualPoint

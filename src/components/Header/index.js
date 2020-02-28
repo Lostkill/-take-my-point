@@ -1,6 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { logout } from '../../@takeMyPoint/ducks/user-duck'
+import { clearPoints } from '../../@takeMyPoint/ducks/point-duck'
 
 import i18n from '../../config/i18n'
 
@@ -17,6 +20,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 function HeaderBar (props) {
+  function setLogout () {
+    props.clearPoints()
+    props.logout()
+  }
+
   return (
     <div style={{ height: '100%' }}>
       <AppBar
@@ -38,7 +46,7 @@ function HeaderBar (props) {
             </div>
 
             <Tooltip title={`${i18n.translate('logout')}`} placement='bottom'>
-              <IconButton onClick={() => props.setLogout()}>
+              <IconButton onClick={() => setLogout()}>
                 <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={faSignOutAlt} />
               </IconButton>
             </Tooltip>
@@ -63,7 +71,14 @@ function HeaderBar (props) {
   )
 }
 
-export default HeaderBar
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout()),
+    clearPoints: () => dispatch(clearPoints())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HeaderBar)
 
 const HeaderToolbar = styled(Toolbar)`
   background-color: ${props => props.enterprise.light_color};

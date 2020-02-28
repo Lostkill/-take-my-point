@@ -1,33 +1,47 @@
 // Action Types
 export const Types = {
-  IS_FETCHING: 'point/IS_FETCHING',
-  GET_POINTS: 'point/GET_POINTS',
-  SET_POINT: 'point/SET_POINT'
+  LOGIN: 'auth/LOGIN',
+  LOGOUT: 'auth/LOGOUT',
+  UPDATE: 'auth/UPDATE',
+  FETCH_ERROR: 'auth/FETCH_ERROR'
 }
 
 // Reducer
 const initialState = {
-  isFetching: false,
-  points: {},
-  lastPoint: {}
+  isLogged: false,
+  token: null,
+  user: {},
+  error: null
 }
 
 export default function reducer (state = initialState, action) {
   switch (action.type) {
-    case Types.IS_FETCHING:
+    case Types.LOGIN:
       return {
-        ...state,
-        isFetching: action.isFetching
+        isLogged: true,
+        user: action.user,
+        token: action.token,
+        error: null
       }
-    case Types.GET_POINTS:
+    case Types.LOGOUT:
       return {
-        ...state,
-        points: action.points
+        isLogged: false,
+        token: null,
+        user: {},
+        error: null
       }
-    case Types.SET_POINT:
+    case Types.UPDATE:
       return {
         ...state,
-        lastPoint: action.lastPoint
+        user: {
+          ...state.user,
+          ...action.user
+        }
+      }
+    case Types.FETCH_ERROR:
+      return {
+        ...state,
+        error: action.error
       }
     default:
       return state
@@ -35,21 +49,33 @@ export default function reducer (state = initialState, action) {
 }
 
 // Action Creators
-export function setIsFetching (isFetching) {
+export function login (user, token) {
   return {
-    type: Types.IS_FETCHING,
-    isFetching
+    type: Types.LOGIN,
+    user,
+    token
   }
 }
-export function getPoints (points) {
+
+export function logout () {
   return {
-    type: Types.GET_POINTS,
-    points
+    type: Types.LOGOUT,
+    isLogged: false,
+    token: null,
+    user: {}
   }
 }
-export function setPoint (point) {
+
+export function fetchError (error) {
   return {
-    type: Types.SET_POINT,
-    lastPoint: point
+    type: Types.FETCH_ERROR,
+    error
+  }
+}
+
+export function updateUser (user) {
+  return {
+    type: Types.UPDATE,
+    user
   }
 }

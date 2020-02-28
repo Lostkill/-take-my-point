@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import LogoCompany from '../components/logo-img'
 import TextField from '../components/text-field'
+import NativeSelect from '@material-ui/core/NativeSelect'
 import Button from '@material-ui/core/Button'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,6 +22,11 @@ const LoginView = props => (
           <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: '100%' }}>
             <div>
               <TextField
+                label='Username'
+                value={props.fieldsValues.username}
+                onChange={props.handleChange('username')}
+              />
+              <TextField
                 label='E-Mail'
                 value={props.fieldsValues.email}
                 onChange={props.handleChange('email')}
@@ -31,7 +37,22 @@ const LoginView = props => (
                 onChange={props.handleChange('password')}
                 type='password'
               />
-              {props.error ? <LoginTextError>{props.error}</LoginTextError> : null}
+              <LanguageWrapper>
+                <NativeSelect
+                  id='demo-customized-select-native'
+                  value={props.fieldsValues.language}
+                  onChange={props.handleChange('language')}
+                  inputProps={{
+                    name: 'language',
+                    id: 'outlined-age-native-simple'
+                  }}
+                  fullWidth
+                >
+                  <option value='pt'>pt-BR</option>
+                  <option value='en'>en-US</option>
+                </NativeSelect>
+              </LanguageWrapper>
+              {props.error ? <TextError>{props.error}</TextError> : null}
             </div>
           </div>
         </LoginFormWrapper>
@@ -44,13 +65,10 @@ const LoginView = props => (
             style={{ borderRadius: '0px' }}
           >
             <div>
-              Acessar
+              Registrar-se
               <FontAwesomeIcon icon={faLocationArrow} />
             </div>
           </Button>
-          <div className='d-flex justify-content-center align-items-center'>
-            <a href='/register'>Don't have an account?</a>
-          </div>
         </ButtonWrapper>
       </div>
     </BackgroundEffect>
@@ -78,9 +96,12 @@ const LoginTitle = styled.h1`
 const LoginFormWrapper = styled.div`
   background-color: white;
   width: 450px;
-  height: 20%;
+  height: 30%;
 `
-const LoginTextError = styled.div`
+const LanguageWrapper = styled.div`
+  margin: 15px 0px;
+`
+const TextError = styled.div`
   color: red;
   font-size: 12px;
 `

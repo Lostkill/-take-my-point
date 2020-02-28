@@ -1,17 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { loginThunk } from '../@takeMyPoint/thunks/user-thunk'
 import { fetchError } from '../@takeMyPoint/ducks/user-duck'
 import enterpriseSettings from '../config/enterprises'
 
-import LoginView from '../screens/login-view'
+import RegisterView from '../screens/register-view'
 
-function LoginContainer (props) {
+function RegisterContainer (props) {
   const [company] = useState('solides')
   const [state, setState] = useState({
     email: '',
-    password: ''
+    username: '',
+    password: '',
+    language: 'pt'
   })
+
+  const { fetchError } = props
+  useEffect(() => {
+    fetchError('')
+  }, [fetchError])
 
   const handleChange = name => event => {
     setState({
@@ -22,16 +29,16 @@ function LoginContainer (props) {
   }
 
   function handleSubmit () {
-    if (state.email && state.password) {
-      props.setLogin(state)
+    if (state) {
+      props.setRegister(state)
     }
   }
 
   return (
     <div>
-      <LoginView
-        fieldsValues={state}
+      <RegisterView
         error={props.error}
+        fieldsValues={state}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         enterprise={enterpriseSettings[company]}
@@ -50,9 +57,9 @@ const mapStateToProps = ({ UserDuck }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLogin: (payload) => dispatch(loginThunk.auth(payload)),
+    setRegister: (payload) => dispatch(loginThunk.create(payload)),
     fetchError: (error) => dispatch(fetchError(error))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)

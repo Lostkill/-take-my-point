@@ -2,35 +2,32 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import enterpriseSettings from '../config/enterprises'
 
-import { logout } from '../@takeMyPoint/ducks/login-duck'
-import { setPointThunk } from '../@takeMyPoint/thunks/user-thunk'
+import { setPointThunk } from '../@takeMyPoint/thunks/point-thunk'
 import { menuOptions } from '../config/menu-options'
 
 import HeaderBar from '../components/Header'
 import HistoryView from '../screens/history-view'
 
-function Home (props) {
+function HistoryContainer (props) {
   const company = 'solides'
   const [menu] = useState(menuOptions)
   const [dateSelected, setDateSelected] = useState([])
 
-  const { user } = props
-  function requestAllPoints () {
-    props.getAllPoints(user._id)
-  }
-
+  const { user, getAllPoints } = props
   useEffect(() => {
+    function requestAllPoints () {
+      getAllPoints(user._id)
+    }
     requestAllPoints()
-  }, [])
+  }, [user, getAllPoints])
 
-  const { lastPoint, logout } = props
+  const { lastPoint } = props
   return (
     <div>
       <HeaderBar
         menu={menu}
         enterprise={enterpriseSettings[company]}
-        activePoint={lastPoint.type === 'ENTRY' && true}
-        setLogout={logout}
+        activePoint={lastPoint.type === 'EXIT' && true}
       />
       <HistoryView
         points={props.points}
@@ -42,9 +39,9 @@ function Home (props) {
   )
 }
 
-const mapStateToProps = ({ LoginDuck, UserDuck }) => {
-  const { user } = LoginDuck
-  const { lastPoint, points, isFetching } = UserDuck
+const mapStateToProps = ({ UserDuck, PointDuck }) => {
+  const { user } = UserDuck
+  const { lastPoint, points, isFetching } = PointDuck
 
   return {
     user,
@@ -56,9 +53,8 @@ const mapStateToProps = ({ LoginDuck, UserDuck }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout()),
     getAllPoints: (payload) => dispatch(setPointThunk.getAll(payload))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryContainer)

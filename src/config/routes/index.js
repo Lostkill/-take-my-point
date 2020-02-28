@@ -7,6 +7,7 @@ import SessionProvider from '../../providers/session-provider'
 import enterpriseSettings from '../enterprises'
 
 import Login from '../../containers/login-container'
+import Register from '../../containers/register-container'
 import AppRoutes from './routes'
 
 function Routes (props) {
@@ -24,6 +25,10 @@ function Routes (props) {
     return (<Route {...rest} render={(props) => token ? (<Redirect to='/app/point' />) : (<Component {...props} />)} />)
   }
 
+  const RegisterRoute = ({ component: Component, token, ...rest }) => {
+    return (<Route {...rest} render={(props) => token ? (<Redirect to='/app/point' />) : (<Component {...props} />)} />)
+  }
+
   if (props.location.pathname === '/' || props.location.pathname === '/app') {
     if (props.isLogged) {
       return <Redirect to='/app/dashboard' />
@@ -33,7 +38,7 @@ function Routes (props) {
   }
 
   return (
-    <div className='app-main' enterprise={enterpriseSettings[company]}>
+    <div className='app-main'>
       <BrowserRouter>
         <Switch>
           <SessionProvider
@@ -45,6 +50,7 @@ function Routes (props) {
                   <>
                     <PrivateRoute path='/app' token={tokenIsValid && props.isLogged} component={AppRoutes} />
                     <LoginRoute path='/login' token={tokenIsValid} component={Login} />
+                    <RegisterRoute path='/register' token={tokenIsValid} component={Register} />
                   </>
                 )
               }
@@ -56,8 +62,8 @@ function Routes (props) {
   )
 }
 
-const mapStateToProps = ({ LoginDuck }) => {
-  const { isLogged, token, user } = LoginDuck
+const mapStateToProps = ({ UserDuck }) => {
+  const { isLogged, token, user } = UserDuck
 
   return {
     isLogged,
