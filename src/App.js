@@ -1,3 +1,4 @@
+import './style.css'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { PersistGate } from 'redux-persist/integration/react'

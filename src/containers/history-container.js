@@ -28,7 +28,7 @@ function HistoryContainer (props) {
   }, [points])
 
   return (
-    <div>
+    <div className='wrapper'>
       <HeaderBar
         menu={menu}
         activePoint={activePoint === 'ENTRY' && true}

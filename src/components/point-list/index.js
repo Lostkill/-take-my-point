@@ -50,10 +50,11 @@ function PointList (props) {
 export default PointList
 
 const Wrapper = styled.div`
-  white-space: normal;
+  overflow: auto;
   width: 100%;
+  display: flex;
+  align-items: flex-end;
 `
 const TableWrapper = styled.div`
-  height: calc(100vh - 250px);
   width: 100%;
 `

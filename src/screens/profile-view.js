@@ -21,7 +21,7 @@ function ProfileView (props) {
       <ContentWrapper className='container d-flex flex-column justify-content-center align-items-center'>
         <CardWrapper className='d-flex'>
           <CardMedia
-            style={{ width: '150px', height: '100%' }}
+            style={{ width: '20%' }}
             image={`${props.user.profile_pic ? props.user.profile_pic : 'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png'}`}
           />
           <CardContentWrapper>
@@ -80,11 +80,9 @@ function ProfileView (props) {
 export default ProfileView
 
 const ContentWrapper = styled.div`
-  overflow: hidden;
-  position: absolute;
+  overflow: auto;
   height: 100%;
   width: 100%;
-  bottom: 0;
 `
 const CardWrapper = styled(Card)`
   width: 100%;

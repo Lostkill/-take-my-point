@@ -38,7 +38,7 @@ function ProfileContainer (props) {
   }
 
   return (
-    <div>
+    <div className='wrapper'>
       <HeaderBar
         menu={menu}
         activePoint={activePoint === 'ENTRY' && true}

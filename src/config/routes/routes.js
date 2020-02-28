@@ -7,7 +7,7 @@ import PROFILE from '../../containers/profile-container'
 
 function Routes () {
   return (
-    <div>
+    <div className='wrapper'>
       <BrowserRouter>
         <Route path='/app/point' component={HOME} />
         <Route path='/app/history' component={HISTORY} />

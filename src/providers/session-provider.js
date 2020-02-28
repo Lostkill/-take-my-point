@@ -15,12 +15,8 @@ function SessionProvider (props) {
     }
   }, [props.token, token])
 
-  return (
-    <div>
-      {props.children(
-        tokenIsValid
-      )}
-    </div>
+  return props.children(
+    tokenIsValid
   )
 }
 

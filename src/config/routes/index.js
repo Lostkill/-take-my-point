@@ -47,11 +47,11 @@ function Routes (props) {
             {
               (tokenIsValid) => {
                 return (
-                  <>
+                  <div className='wrapper'>
                     <PrivateRoute path='/app' token={tokenIsValid && props.isLogged} component={AppRoutes} />
                     <LoginRoute path='/login' token={tokenIsValid} component={Login} />
                     <RegisterRoute path='/register' token={tokenIsValid} component={Register} />
-                  </>
+                  </div>
                 )
               }
             }

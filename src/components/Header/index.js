@@ -24,8 +24,8 @@ function HeaderBar (props) {
   const theme = useContext(ThemeContext)
   return (
     <AppBar
-      position='fixed'
-      style={{ padding: '0' }}
+      position='static'
+      style={{ padding: '0', margin: '0px 20px 2vh 0px' }}
     >
       <HeaderToolbar theme={theme} className='d-flex flex-column'>
         <FirstHeader>
@@ -47,23 +47,23 @@ function HeaderBar (props) {
             </IconButton>
           </Tooltip>
         </FirstHeader>
-        <SecondHeader>
-          <Menu className='d-flex' theme={theme}>
-            <div>
-              {props.menu.map((item) => (
-                <Tooltip title={`${i18n.translate(`menu.${item.name}`)}`} placement='bottom' key={item.name}>
-                  <Link to={item.link}>
-                    <IconButton>
-                      <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={item.icon} />
-                    </IconButton>
-                  </Link>
-                </Tooltip>
-              ))}
-            </div>
-            <Status status={{ active: props.activePoint }} />
-          </Menu>
-        </SecondHeader>
       </HeaderToolbar>
+      <SecondHeader>
+        <Menu className='d-flex' theme={theme}>
+          <div>
+            {props.menu.map((item) => (
+              <Tooltip title={`${i18n.translate(`menu.${item.name}`)}`} placement='bottom' key={item.name}>
+                <Link to={item.link}>
+                  <IconButton>
+                    <FontAwesomeIcon style={{ color: 'white' }} className='fa-xs' icon={item.icon} />
+                  </IconButton>
+                </Link>
+              </Tooltip>
+            ))}
+          </div>
+          <Status status={{ active: props.activePoint }} />
+        </Menu>
+      </SecondHeader>
     </AppBar>
   )
 }

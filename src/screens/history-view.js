@@ -7,12 +7,12 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 
 function HistoryView (props) {
   return (
-    <div>
-      <ContentWrapper className='container-fluid d-flex justify-content-center align-items-center'>
+    <div className='d-flex flex-column justify-content-center align-items-center'>
+      <ContentWrapper>
         {
           props.isFetching
             ? (
-              <div style={{ width: '50%', height: '50%' }}>
+              <div style={{ width: '100%', height: '100%' }}>
                 <LinearProgress variant='query' />
               </div>
             )
@@ -34,8 +34,6 @@ export default HistoryView
 
 const ContentWrapper = styled.div`
   overflow: auto;
-  position: absolute;
   height: 100%;
   width: 100%;
-  bottom: 0;
 `

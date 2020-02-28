@@ -59,8 +59,7 @@ function HomeView (props) {
 export default HomeView
 
 const ContentWrapper = styled.div`
-  overflow: hidden;
-  position: absolute;
+  overflow: auto;
   height: 100%;
   width: 100%;
   bottom: 0;
