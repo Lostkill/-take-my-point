@@ -6,6 +6,7 @@
     "profile": "Profile"
   },
   "working": "working",
+  "totalHour": "Total hours worked",
   "point-types": {
     "entry": "ENTRY",
     "exit": "EXIT"

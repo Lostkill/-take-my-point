@@ -6,6 +6,7 @@
     "profile": "Perfil"
   },
   "working": "trabalhando",
+  "totalHour": "Total de horas",
   "point-types": {
     "entry": "ENTRADA",
     "exit": "SAÍDA"
