@@ -5,6 +5,7 @@ import LogoCompany from '../components/logo-img'
 import TextField from '../components/text-field'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import Button from '@material-ui/core/Button'
+import PasswordStrength from '../components/password-strength'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
@@ -22,6 +23,7 @@ const LoginView = props => (
             <div>
               <TextField
                 label='Username'
+                type='email'
                 value={props.fieldsValues.username}
                 onChange={props.handleChange('username')}
               />
@@ -36,6 +38,7 @@ const LoginView = props => (
                 onChange={props.handleChange('password')}
                 type='password'
               />
+              <PasswordStrength strength={props.passwordStrength} />
               <LanguageWrapper>
                 <NativeSelect
                   id='demo-customized-select-native'

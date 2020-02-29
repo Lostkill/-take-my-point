@@ -14,6 +14,7 @@ function RegisterContainer (props) {
     password: '',
     language: 'pt'
   })
+  const [strength, setPasswordStrength] = useState('low')
 
   const { fetchError } = props
   useEffect(() => {
@@ -28,8 +29,25 @@ function RegisterContainer (props) {
     props.fetchError('')
   }
 
+  const {
+    email,
+    username,
+    password,
+    language
+  } = state
+
+  useEffect(() => {
+    if (password.length >= 10) {
+      setPasswordStrength('high')
+    } else if (password.length > 5 && password.length < 10) {
+      setPasswordStrength('medium')
+    } else {
+      setPasswordStrength('low')
+    }
+  }, [password])
+
   function handleSubmit () {
-    if (state) {
+    if (email && username && password && language) {
       props.setRegister(state)
     }
   }
@@ -42,6 +60,7 @@ function RegisterContainer (props) {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         enterprise={enterpriseSettings[company]}
+        passwordStrength={strength}
       />
     </div>
   )
