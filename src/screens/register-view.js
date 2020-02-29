@@ -15,10 +15,9 @@ const LoginView = props => (
       <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: '100%' }}>
         <LogoCompany
           enterprise={props.enterprise}
-          width={240}
         />
-        <LoginTitle>{props.enterprise.name}</LoginTitle>
-        <LoginFormWrapper>
+        <RegisterTitle>{props.enterprise.name}</RegisterTitle>
+        <RegisterFormWrapper className='col-xs-12 col-md-6 col-lg-3'>
           <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: '100%' }}>
             <div>
               <TextField
@@ -55,21 +54,21 @@ const LoginView = props => (
               {props.error ? <TextError>{props.error}</TextError> : null}
             </div>
           </div>
-        </LoginFormWrapper>
-        <ButtonWrapper>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={() => props.handleSubmit()}
-            fullWidth
-            style={{ borderRadius: '0px' }}
-          >
-            <div>
-              Registrar-se
-              <FontAwesomeIcon icon={faLocationArrow} />
-            </div>
-          </Button>
-        </ButtonWrapper>
+          <ButtonWrapper>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => props.handleSubmit()}
+              fullWidth
+              style={{ borderRadius: '0px' }}
+            >
+              <div>
+                Register
+                <FontAwesomeIcon icon={faLocationArrow} />
+              </div>
+            </Button>
+          </ButtonWrapper>
+        </RegisterFormWrapper>
       </div>
     </BackgroundEffect>
   </div>
@@ -78,25 +77,25 @@ const LoginView = props => (
 export default LoginView
 
 const BackgroundEffect = styled.div`
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
   margin: auto;
-  background-color: ${props => props.enterprise.light_color};
+  background-color: ${props => props.theme.light_color};
   flex: 1;
 `
-const LoginTitle = styled.h1`
+const RegisterTitle = styled.h1`
   color: white;
   font-weight: 200;
   font-size: 60px;
 `
-const LoginFormWrapper = styled.div`
+const RegisterFormWrapper = styled.div`
   background-color: white;
-  width: 450px;
-  height: 30%;
+  width: 100%;
+  padding: 0;
 `
 const LanguageWrapper = styled.div`
   margin: 15px 0px;
@@ -106,5 +105,5 @@ const TextError = styled.div`
   font-size: 12px;
 `
 const ButtonWrapper = styled.div`
-  width: 450px;
+  width: 100%;
 `

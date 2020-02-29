@@ -38,7 +38,7 @@ const LoginView = props => (
               style={{ borderRadius: '0px' }}
             >
               <div>
-                Acessar
+                Access
                 <FontAwesomeIcon icon={faLocationArrow} />
               </div>
             </Button>
